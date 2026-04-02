@@ -12,7 +12,7 @@ public class DatabaseConnection {
         userDatabase.addUser(new User("admin", "admin@disney.com", "secr3tP@ss"));
     }
 
-    public void connectToDatabase(String username, String password) throws Exception {
+    public void connectToDatabase(String username, String password) {
         try {
             if (username == null || password == null) {
                 throw new IllegalArgumentException("Invalid credentials provided");
@@ -29,8 +29,8 @@ public class DatabaseConnection {
             System.out.println("Connected successfully to database as " + username);
 
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Error during database connection", e);
-            throw e;
+            logger.log(Level.SEVERE, "Database connection error", e);
+            System.out.println("Authentication failed. Please check your credentials and try again.");
         }
     }
 }
