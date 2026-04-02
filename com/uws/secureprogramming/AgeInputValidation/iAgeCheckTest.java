@@ -26,9 +26,10 @@ public class iAgeCheckTest {
 
     @Test
     void testInvalidInput() {
-        assertEquals(iAgeCheck.Minor, ageCheck.checkAge("abc"));
-        assertEquals(iAgeCheck.Minor, ageCheck.checkAge(""));
-        assertEquals(iAgeCheck.Minor, ageCheck.checkAge("-1"));
+        assertEquals(iAgeCheck.Invalid, ageCheck.checkAge("abc"));
+        assertEquals(iAgeCheck.Invalid, ageCheck.checkAge(""));
+        assertEquals(iAgeCheck.Invalid, ageCheck.checkAge("-1"));
+        assertEquals(iAgeCheck.Invalid, ageCheck.checkAge("121"));
     }
 
     @Test

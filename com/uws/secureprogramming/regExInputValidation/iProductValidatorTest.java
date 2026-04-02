@@ -57,4 +57,50 @@ class iProductValidatorTest {
         assertFalse(validator.isValidProductCode("A*C-1234"));
         assertFalse(validator.isValidProductCode("ABC-12#4"));
     }
+
+    @Test
+    void testInvalidProductCode_Whitespace() {
+        assertFalse(validator.isValidProductCode(" ABC-1234"));
+        assertFalse(validator.isValidProductCode("ABC-1234 "));
+        assertFalse(validator.isValidProductCode("ABC -1234"));
+        assertFalse(validator.isValidProductCode("ABC- 1234"));
+    }
+
+    @Test
+    void testInvalidProductCode_NewlineOrTab() {
+        assertFalse(validator.isValidProductCode("ABC-1234\n"));
+        assertFalse(validator.isValidProductCode("ABC-\t1234"));
+    }
+
+    @Test
+    void testInvalidProductCode_OnlySymbols() {
+        assertFalse(validator.isValidProductCode("***-####"));
+    }
+
+    @Test
+    void testInvalidProductCode_WhitespaceVariants() {
+        assertFalse(validator.isValidProductCode(" ABC-1234"));
+        assertFalse(validator.isValidProductCode("ABC-1234 "));
+        assertFalse(validator.isValidProductCode("ABC -1234"));
+        assertFalse(validator.isValidProductCode("ABC- 1234"));
+    }
+
+    @Test
+    void testInvalidProductCode_ControlCharacters() {
+        assertFalse(validator.isValidProductCode("ABC-1234\n"));
+        assertFalse(validator.isValidProductCode("ABC-\t1234"));
+    }
+
+    @Test
+    void testInvalidProductCode_WrongDashType() {
+        assertFalse(validator.isValidProductCode("ABC–1234"));
+        assertFalse(validator.isValidProductCode("ABC—1234"));
+    }
+
+    @Test
+    void testInvalidProductCode_ExtraCharacters() {
+        assertFalse(validator.isValidProductCode("XABC-1234"));
+        assertFalse(validator.isValidProductCode("ABC-1234X"));
+        assertFalse(validator.isValidProductCode("ABC-1234;"));
+    }
 }
