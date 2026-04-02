@@ -10,6 +10,11 @@ public class VulnerableAgeCheck implements iAgeCheck {
         try {
             int userAge = Integer.parseInt(age);
 
+            if (userAge < 0 || userAge > 120) {
+                System.out.println("Invalid age. Please enter an age between 0 and 120.");
+            return iAgeCheck.Minor;
+            }
+
             if (userAge >= 18) {
                 return iAgeCheck.Adult;
             } else {
@@ -19,7 +24,7 @@ public class VulnerableAgeCheck implements iAgeCheck {
         
         catch (NumberFormatException e) {
             System.out.println("Invalid input. Please enter a valid whole number");
-            
+
             return iAgeCheck.Minor; 
         }
 
