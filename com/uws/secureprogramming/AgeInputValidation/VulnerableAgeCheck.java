@@ -2,32 +2,20 @@ package com.uws.secureprogramming.AgeInputValidation;
 
 public class VulnerableAgeCheck implements iAgeCheck {
 
+    private final SecureAgeCheck secureAgeCheck = new SecureAgeCheck();
+
     @Override
     public String checkAge(String age) {
+        Integer userAge = secureAgeCheck.validateAndParseAge(age);
 
-        
-        // Try-catch block to handle potential NumberFormatException when parsing the age string
-        try {
-            int userAge = Integer.parseInt(age);
-
-            if (userAge < 0 || userAge > 120) {
-                System.out.println("Invalid age. Please enter an age between 0 and 120.");
-            return iAgeCheck.Minor;
-            }
-
-            if (userAge >= 18) {
-                return iAgeCheck.Adult;
-            } else {
-                return iAgeCheck.Minor;
-            }
-        } 
-        
-        catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please enter a valid whole number");
-
-            return iAgeCheck.Minor; 
+        if (userAge == null) {
+            return iAgeCheck.Invalid;
         }
 
+        if (userAge >= 18) {
+            return iAgeCheck.Adult;
+        } else {
+            return iAgeCheck.Minor;
+        }
     }
-
 }

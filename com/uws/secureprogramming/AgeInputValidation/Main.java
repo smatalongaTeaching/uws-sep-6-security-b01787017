@@ -15,8 +15,10 @@ public class Main {
 
         if (userAge.equals(iAgeCheck.Adult)) {
             System.out.println("You are an adult.");
-        } else {
+        } else if (userAge.equals(iAgeCheck.Minor)) {
             System.out.println("You are a minor.");
+        } else {
+            System.out.println("Invalid input provided.");
         }
 
         scanner.close(); // Good practice to close the scanner
