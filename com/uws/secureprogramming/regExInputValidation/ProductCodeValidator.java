@@ -6,7 +6,10 @@ public class ProductCodeValidator implements iProductValidator {
 
     @Override
     public boolean isValidProductCode(String productCode) {
-       return productCode.matches(PRODUCT_CODE_REGEX);
-    }
+        if (productCode == null || productCode.isEmpty()) {
+            return false;
+        }
 
+        return productCode.matches(PRODUCT_CODE_REGEX);
+    }
 }
