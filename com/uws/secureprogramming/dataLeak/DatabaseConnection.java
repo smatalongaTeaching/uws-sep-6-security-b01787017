@@ -14,18 +14,20 @@ public class DatabaseConnection {
 
     public void connectToDatabase(String username, String password) throws Exception {
         try {
-            // Simulating database connection
-
             if (username == null || password == null) {
-                throw new IllegalArgumentException("Username or password is null");
+                throw new IllegalArgumentException("Invalid credentials provided");
             }
+
             if (username.equals("admin") && !password.equals("secr3tP@ss")) {
-                throw new Exception("Authentication failed: Incorrect password for user admin");
+                throw new IllegalArgumentException("Invalid credentials provided");
             }
+
             if (!this.userDatabase.AcceptUserLogin(username, password)) {
-                throw new Exception("Authentication failed: User not found or incorrect password");
+                throw new IllegalArgumentException("Invalid credentials provided");
             }
+
             System.out.println("Connected successfully to database as " + username);
+
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error during database connection", e);
             throw e;
